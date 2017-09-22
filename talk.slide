@@ -1,0 +1,150 @@
+Intro to Bitcoin
+20 Sept 2017
+Tags: cryptocurrency
+
+Yulin Chen
+yulin.chen.uw@gmail.com
+
+* Overview
+
+- Digital currency and payment system, distributed ledger
+- Emerged from a white paper published on Oct 31, 2008 by an entity named Satoshi Nakamoto
+- First decentralized cryptocurrency launched in 2009
+- Satoshi, smallest amount in bitcoin 0.00000001 one hundred millionth of a bitcoin
+
+* Supply of Currency
+
+- Central bank injects new currency into system
+- Attempts match growth of the amount of goods to stabilize price
+
+* Supply of Bitcoin
+
+- Created each time user discovers a new block
+- 50% reduction every 210,000 blocks (~4 years)
+.image supply.png _ 900
+
+* Advantage
+
+- Freedom in payment
+
+: Presenter notes (pay/receive payments to/from anyone anywhere in the world)
+
+- Blockchain prevents double spending
+
+- Decentralized, no single central authority governing body
+
+: Presenter notes (entire system of peers work together to maintain the distributed ledger)
+: Presenter notes (so for anarchist worrying about government working with banks to freeze your account)
+
+- Secure*
+
+: Presenter notes (System is designed to incentivize honest players, while making it incredibly hard for fraudulent actors)
+: Presenter notes (Public/Private key pair)
+
+- Anonymity
+
+: Presenter notes (can acquire bitcoins without leaving paper trail)
+
+- Low transaction fee [[https://bitcoinfees.21.co/][fee estimate]],
+
+: Presenter notes (voluntary on the part of the transaction initiator, incentivizes minor to include your transaction in new block)
+
+: Presenter notes (will continue to go up as reward for mining new blocks go down)
+
+- Transparency
+
+: Presenter notes (Everyone can verify the block chain)
+
+
+* Disadvantage
+
+- Can lose wallet/private key
+
+- Security often left at the hands of wallet service providers
+
+: Presenter notes (If you use a wallet service, you better hope they treat security seriously and don't hand over your private key)
+
+- Not widely accepted
+
+- Volatile market
+
+- Stolen bitcoins can be easily laundered, making recovery impossible
+
+: Presenter notes (Bitcoin tumblers, exchange to other type of coin, bitcoin casino etc)
+
+
+* Cryptographic Secure Hash
+
+- MD5, SHA-256
+
+- Usages: digital signature, password verification, proof-of-work
+
+- Properties
+
+  - Deterministic
+  - Computationally efficient
+  - Pre-image resistance, given hash h, hard to find message m that h = hash(m)
+  - Second pre-image resistance, given m1, hard to find m2 that hash(m1) = hash(m2)
+  - Collision resistance
+
+.image hash.png _ 250
+
+* Digital Signature
+
+- Alice has creates public/private (verification/signing) key pair (Vk/Sk)
+- Alice submits a transaction T1 signed with Encrypt(Hash(T1), Sk)
+- Minor verifies if Decrypt(signature, Vk) == Hash(T1)
+
+.image digital_signature.jpg _ 600
+
+* Transaction Records
+
+- Basic content: unspent inputs, outputs, signature, public key
+- Inputs sum = outputs sum
+- Content is signed with sender's private key
+- Public key is revealed for the first time when you spend the money
+- Good practice to use new Sk/Vk/Address once you spend
+
+* Transaction Records (continued)
+.image transaction.png
+.image signed_transaction.png
+
+* Transactions Block
+- Sender broadcast txn to network of minors
+- Uses merkle tree to get hash for transactions
+.image merkel.png _ 400
+- Incorporate last block's hash with current txns hash
+- Work off of longest block chain
+- 1MB block size
+- Minors can prioritize transactions with higher txn fee
+
+* Transaction Block (continued)
+.image block.jpg _ 900
+
+* Proof of Work
+- HashCash: cryto_secure_hash(block hash + nonce) => x number of leading 0s
+- Ex: 160bit hash, 40 leading zeros, 2^160 total possibilities, 2^120 acceptable solutions, approximately 1 solution every 2^40 tries.
+- The more zeros required, more work implied
+- Challenge is calibrated every 2016 blocks generated (2 weeks)
+- Maintain on avg 10 min for new block
+
+* Miners
+- Listen for txns submitted to network
+- Verify txns going into a new block
+- Always work off of the longest chain
+- Broadcast solution to network
+- Discard work at hand if new block has be made known, and start working off of new chain
+
+* Security
+- Prevents double spending, double spent txn can never both exist in the main chain
+- Some merchants will make you wait until the transaction has been cleared
+- The more blocks created since your txn block, the safer your txn will not be reverted
+- Designed to incentivize honest players with rewards
+- 51% attack, >50% of computing power, they are more likely to write those blocks, hence can control other things like reversing a txn
+- Major security breaches in the past to bitcoin, stealing people's private key from wallet service
+- Quantum computing cracking pubkey cryptography
+
+* References
+
+- [[https://www.khanacademy.org/economics-finance-domain/core-finance/money-and-banking/bitcoin/v/bitcoin-what-is-it][Khan Academy Lecture]]
+- Wikipedia
